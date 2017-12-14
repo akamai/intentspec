@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{intentspec}
+
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true}
+\hypersetup{linkcolor=blue}
+
+%\addtolength{\evensidemargin}{1in}
+\addtolength{\oddsidemargin}{-.8in}
+\addtolength{\textwidth}{.5in}
+%\addtolength{\textheight}{1in}
+\addtolength{\marginparwidth}{.75in}
+
+% intent environment 
+% example: \begin{intent}{Goal}{G}
+\newenvironment{intent}[2]{
+  \def \intentType {#1}
+  \def \intentPrefix {#2}
+  \renewcommand{\theenumi}{\intentPrefix\arabic{enumi}}
+  \renewcommand{\theenumii}{.\arabic{enumii}}
+  \renewcommand{\theenumiii}{.\arabic{enumiii}}
+  \renewcommand{\theenumiv}{.\arabic{enumiv}}
+
+  \renewcommand{\labelenumi}{\intentPrefix\arabic{enumi}}
+  \renewcommand{\labelenumii}{\intentPrefix\arabic{enumi}.\arabic{enumii}}
+  \renewcommand{\labelenumiii}{\intentPrefix\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+  \renewcommand{\labelenumiv}{\intentPrefix\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+  \begin{enumerate}
+    \setlength{\itemsep}{7pt}
+    \setlength{\parskip}{0pt}
+}{\end{enumerate}}
+
+% TODO - We might want something more like lemmas here.
+\newenvironment{assumption}{\par \noindent \textbf{Assumption: }}{}
+
+% macros for citing other intent items
+% params: [label]
+\newcommand{\uptrace}[1]{\hyperref[#1]{$\uparrow$\ref*{#1}}}
+\newcommand{\downtrace}[1]{\hyperref[#1]{$\downarrow$\ref*{#1}}}
+               
+% intent item
+% params: [label][short name][descriptive text][citations]
+\newcommand{\iitem}[4]{
+  \item \label{#1} \textbf{#2}\hspace{1em}#3 (#4)
+}
+
+% info about .aux file:
+% https://tex.stackexchange.com/questions/111280/understanding-how-references-and-labels-work
+% https://tex.stackexchange.com/questions/349204/back-reference-for-theorems
+% https://tex.stackexchange.com/questions/249753/detect-forward-references-make-them-different-color
+
+
+
+
+\endinput

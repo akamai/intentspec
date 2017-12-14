@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage{intentspec}
+\begin{document}
+\section{Jam Example}
+
+This is an example for testing new formatting for intent specifications.
+
+\subsection{Goals}
+\begin{intent}{Goal}{G}
+  \iitem{g:preserves}{preserves}{Turn berries into jam.}{}
+  \begin{assumption}Citrus is a hesperidium, not a berry, and can only be made into marmelade, not into jam.\end{assumption}
+  \iitem{g:preserve}{preservation}{Do no harm to the other existing systems.}{}\marginpar{$\leftarrow$ This seems like more of a loss.}
+  \begin{assumption}Vishnu the Preserver will assist.\end{assumption}
+  \iitem{g:pre-serve}{pre-serve}{Flatter the MVPs by serving sneak-preview jam.}{}
+\end{intent}
+
+\subsection{Losses}
+\begin{intent}{Loss}{L}
+  \iitem{l:equip}{equipment damage}{Damage or destroy equipment in the course of cooking.}{\uptrace{g:preserve}}
+  \iitem{l:interfere}{kitchen interference}{Interfere with the cooking of other food.}{\uptrace{g:preserve}}
+  \iitem{l:mission}{mission loss}{Fail to produce sufficient jam of sufficient quality.}{\uptrace{g:preserves}}
+  \end{intent}
+
+
+\end{document}

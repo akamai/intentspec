@@ -4,12 +4,38 @@
 \section{Jam Example}
 
 This is an example for testing new formatting for intent specifications.
+Features include:
 
-\subsection{Goals}
+\begin{enumerate}
+\item macros for citing and linking to another ``iitem'' with an arrow
+\item modification of the enumeration environment to include a specified prefix
+\item an ``intent item'' (iitem) macro to include four parameters:
+  \begin {enumerate}
+  \item a label to be used when citing this item elsewhere in the document
+  \item a short description (which appears in bold)
+  \item a longer description of the item
+    \item a place to cite other related intent items
+  \end{enumerate}
+\end{enumerate}
+
+I have included a margin note as an example of how, when writing intent specifications, I have left commentary for subsequent editing passes.
+
+\subsection{System Goals}
 \begin{intent}{Goal}{G}
-  \iitem{g:preserves}{preserves}{Turn berries into jam.}{}
+  \iitem{g:preserves}{preserves}{Turn berries into jam.\marginpar{$\leftarrow$ Observe sub-levels from nested ``enumerate'' environment.}}{\downtrace{l:mission}}
+  \begin{enumerate}
+    \iitem{g:stone}{stone fruit}{
+      \begin{enumerate}
+      \item peach
+      \item cherry
+      \item plum
+      \end{enumerate}
+      Include these preserves, even though stone fruit is not a berry.}{}
+    \iitem{g:blueberry}{blueberry}{Blueberry should be among the initial offerings.}{}
+    \iitem{g:raspberry}{raspberry}{}{}
+    \end{enumerate}
   \begin{assumption}Citrus is a hesperidium, not a berry, and can only be made into marmelade, not into jam.\end{assumption}
-  \iitem{g:preserve}{preservation}{Do no harm to the other existing systems.}{}\marginpar{$\leftarrow$ This seems like more of a loss.}
+  \iitem{g:preserve}{preservation}{Do no harm to the other existing systems.}{\downtrace{l:interfere}, \downtrace{l:equip}}\marginpar{$\leftarrow$ This seems like more of a loss.}
   \begin{assumption}Vishnu the Preserver will assist.\end{assumption}
   \iitem{g:pre-serve}{pre-serve}{Flatter the MVPs by serving sneak-preview jam.}{}
 \end{intent}
@@ -18,7 +44,8 @@ This is an example for testing new formatting for intent specifications.
 \begin{intent}{Loss}{L}
   \iitem{l:equip}{equipment damage}{Damage or destroy equipment in the course of cooking.}{\uptrace{g:preserve}}
   \iitem{l:interfere}{kitchen interference}{Interfere with the cooking of other food.}{\uptrace{g:preserve}}
-  \iitem{l:mission}{mission loss}{Fail to produce sufficient jam of sufficient quality.}{\uptrace{g:preserves}}
+  \iitem{l:mission}{mission loss}{Fail to produce a sufficient quantity of jam of sufficient quality.}{\uptrace{g:preserves}}
+  \iitem{l:life}{life and limb}{Injury or death of someone in the jam-production facility or a consumer of the jam.}{}
   \end{intent}
 
 
